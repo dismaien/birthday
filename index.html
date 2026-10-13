@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>leona's forest birthday</title>
+<meta name="description" content="thu 19 – mon 23 november 2026, at the garden near porto. come for a day, or the whole thing.">
+<meta property="og:title" content="leona's forest birthday">
+<meta property="og:description" content="thu 19 – mon 23 november, the garden near porto. hot tub, sauna, rain, dancing.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://birthday.leona.garden/">
+<meta property="og:image" content="https://birthday.leona.garden/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* layout: one narrow column like a folded invitation, rain over the opening, a weekend strip, then practical notes and an rsvp card */
+:root {
+  --fog: #e2e6df;        /* wet morning, page ground */
+  --fog-deep: #d3d9d1;   /* panels */
+  --pine: #1d2b25;       /* ink */
+  --moss: #4d5f54;       /* secondary ink */
+  --lantern: #c9862a;    /* sauna light, accent */
+  --line: #b9c2b8;
+  --field: #f1f3ef;
+  --rain: 29, 43, 37;    /* rgb for canvas drops */
+  --display: "Young Serif", Georgia, "Times New Roman", serif;
+  --body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --fog: #141c18; --fog-deep: #1c2621; --pine: #e4e9e2; --moss: #9fb0a5;
+    --lantern: #e7a64a; --line: #33423a; --field: #18211d; --rain: 200, 215, 205;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --fog: #141c18; --fog-deep: #1c2621; --pine: #e4e9e2; --moss: #9fb0a5;
+  --lantern: #e7a64a; --line: #33423a; --field: #18211d; --rain: 200, 215, 205;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--fog);
+  color: var(--pine);
+  font: 400 1.0625rem/1.6 var(--body);
+}
+.wrap {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding-inline: 20px;
+  padding-block: 0 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+}
+
+/* opening */
+.hero { position: relative; padding-block: 4.5rem 1rem; isolation: isolate; }
+#rain { position: absolute; inset: 0 -20px; width: calc(100% + 40px); height: 100%; z-index: -1; pointer-events: none; }
+.eyebrow {
+  font: 500 0.75rem/1 var(--mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--moss);
+  margin: 0 0 1.25rem;
+}
+h1 {
+  font: 400 clamp(3rem, 13vw, 5.5rem)/0.92 var(--display);
+  letter-spacing: -0.02em;
+  margin: 0;
+  text-wrap: balance;
+}
+h1 .glow { color: var(--lantern); }
+.lede { font-size: 1.25rem; line-height: 1.5; margin: 1.75rem 0 0; max-width: 32rem; }
+.facts {
+  margin: 2rem 0 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.4rem 1.25rem;
+  font-family: var(--mono);
+  font-size: 0.9rem;
+}
+.facts dt { color: var(--moss); }
+.facts dd { margin: 0; }
+
+h2 {
+  font: 400 1.75rem/1.15 var(--display);
+  margin: 0 0 1rem;
+  text-wrap: balance;
+}
+section p { margin: 0 0 1rem; max-width: 65ch; }
+section p:last-child { margin-bottom: 0; }
+
+/* photos */
+.bleed { margin-inline: -20px; }
+.bleed img, .band img { display: block; width: 100%; max-width: 100%; height: auto; }
+.hero-photo { margin-block: 2.5rem 0; }
+.hero-photo img { aspect-ratio: 16 / 9; object-fit: cover; }
+figcaption { font: 0.75rem/1.4 var(--mono); color: var(--moss); padding: 0.5rem 20px 0; }
+.band { margin-block: 0 1.25rem; }
+.band img { aspect-ratio: 2.2 / 1; object-fit: cover; }
+
+/* what's there */
+.things {
+  list-style: none; padding: 0; margin: 1.5rem 0 0;
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem 0.75rem;
+}
+.things li { min-width: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+.things img { display: block; width: 100%; max-width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; background: var(--fog-deep); }
+.things b { display: block; font-weight: 600; }
+.things span { color: var(--moss); font-size: 0.95rem; }
+
+/* the weekend */
+.days { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--line); }
+.days li {
+  display: grid; grid-template-columns: 5.5rem 1fr; gap: 1rem;
+  padding: 0.9rem 0; border-bottom: 1px solid var(--line);
+}
+.days time { font: 500 0.85rem/1.6 var(--mono); color: var(--moss); padding-top: 0.15rem; }
+.days li.bday time, .days li.bday strong { color: var(--lantern); }
+.days strong { font-weight: 600; }
+.days p { margin: 0; color: var(--moss); }
+
+/* bring list */
+.bring { columns: 2; column-gap: 2rem; padding-left: 1.1rem; margin: 0; }
+.bring li { break-inside: avoid; margin-bottom: 0.25rem; }
+
+.note {
+  background: var(--fog-deep);
+  padding: 1.25rem 1.25rem;
+  border-left: 3px solid var(--lantern);
+}
+
+/* rsvp */
+.rsvp { background: var(--fog-deep); padding: 1.75rem 1.25rem; margin-inline: -4px; }
+form { display: flex; flex-direction: column; gap: 1.25rem; }
+label, legend { font-weight: 600; display: block; margin-bottom: 0.4rem; }
+.hint { font-weight: 400; color: var(--moss); font-size: 0.9rem; }
+input[type=text], textarea, select {
+  width: 100%; font: inherit; color: var(--pine);
+  background: var(--field); border: 1px solid var(--line); border-radius: 2px;
+  padding: 0.6rem 0.75rem;
+}
+textarea { min-height: 5rem; resize: vertical; }
+fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.chip { position: relative; }
+.chip input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.chip span {
+  display: inline-block; padding: 0.45rem 0.8rem;
+  border: 1px solid var(--line); background: var(--field);
+  font: 500 0.85rem/1.2 var(--mono); border-radius: 2px;
+}
+.chip input:checked + span { background: var(--pine); color: var(--fog); border-color: var(--pine); }
+.chip input:focus-visible + span { outline: 2px solid var(--lantern); outline-offset: 2px; }
+input:focus-visible, textarea:focus-visible, select:focus-visible, button:focus-visible, a:focus-visible {
+  outline: 2px solid var(--lantern); outline-offset: 2px;
+}
+button {
+  font: 600 1rem/1 var(--body); cursor: pointer;
+  background: var(--pine); color: var(--fog);
+  border: 0; border-radius: 2px; padding: 0.95rem 1.25rem;
+  align-self: flex-start;
+}
+button.ghost { background: transparent; color: var(--pine); border: 1px solid var(--pine); }
+#out[hidden] { display: none; }
+#out { display: flex; flex-direction: column; gap: 0.75rem; }
+#out pre {
+  white-space: pre-wrap; margin: 0; background: var(--field);
+  border: 1px solid var(--line); padding: 1rem; font: 0.85rem/1.5 var(--mono);
+}
+.row { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+a { color: inherit; text-decoration-color: var(--lantern); text-underline-offset: 3px; }
+a.btn {
+  display: inline-block; text-decoration: none; font-weight: 600;
+  background: var(--lantern); color: #1d2b25; padding: 0.95rem 1.25rem; border-radius: 2px;
+}
+footer { font: 0.8rem/1.5 var(--mono); color: var(--moss); }
+
+@media (max-width: 30rem) {
+  .bring { columns: 1; }
+  .days li { grid-template-columns: 4.5rem 1fr; }
+}
+@media (prefers-reduced-motion: reduce) { #rain { display: none; } }
+</style>
+</head>
+<body>
+<main class="wrap">
+
+  <header class="hero">
+    <canvas id="rain" aria-hidden="true"></canvas>
+    <p class="eyebrow">an invitation · november 2026</p>
+    <h1>a forest <span class="glow">birthday</span></h1>
+    <p class="lede">come celebrate my birthday with me at the garden. come for a day, or a week, or however long you want.</p>
+    <dl class="facts">
+      <dt>when</dt><dd>thu 19 – mon 23 nov</dd>
+      <dt>the day</dt><dd>sun 22 nov</dd>
+      <dt>where</dt><dd>the garden, a forest near porto, portugal</dd>
+    </dl>
+    <figure class="hero-photo bleed">
+      <img src="img/forest.jpg" width="1600" height="900" alt="the lake at the garden from above, surrounded by forest">
+      <figcaption>the lake from above. 9 hectares of forest, two springs</figcaption>
+    </figure>
+  </header>
+
+  <section>
+    <h2>the idea</h2>
+    <p>rainy autumn forest vibes, a hot tub and a sauna, dancing and music, and maybe even a cook. you fly in from wherever you are and stay for all of it or part of it.</p>
+    <p>i want loved ones around me who actually show up. that's you.</p>
+    <ul class="things">
+      <li><img src="img/hottub.jpg" width="1600" height="1242" alt="a wooden hot tub in the forest" loading="lazy" style="object-position: 30% 100%"><div><b>hot tub</b><span>steaming, in the rain</span></div></li>
+      <li><img src="img/sauna.jpg" width="1205" height="1600" alt="inside the cedar barrel sauna" loading="lazy"><div><b>sauna</b><span>cedar, on the lake</span></div></li>
+      <li><img src="img/dance.jpg" width="1600" height="1066" alt="people moving in the big wooden dance hall" loading="lazy"><div><b>dancing</b><span>the big wooden hall, music</span></div></li>
+      <li><img src="img/night.jpg" width="1152" height="1600" alt="the dance hall lit up at night under a full moon" loading="lazy" style="object-position: 50% 70%"><div><b>nights</b><span>the hall lit up under the moon</span></div></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>the weekend</h2>
+    <figure class="band bleed"><img src="img/candles.jpg" width="1600" height="734" alt="candles burning on a wooden table at night" loading="lazy"></figure>
+    <ol class="days">
+      <li><time>thu 19</time><div><strong>arrive</strong><p>fire on, soup, first sauna</p></div></li>
+      <li><time>fri 20</time><div><strong>forest day</strong><p>walks, hot tub, nothing in particular</p></div></li>
+      <li><time>sat 21</time><div><strong>party</strong><p>dinner, then dancing into my birthday at midnight</p></div></li>
+      <li class="bday"><time>sun 22</time><div><strong>my birthday</strong><p>slow morning, long lunch, more sauna</p></div></li>
+      <li><time>mon 23</time><div><strong>goodbyes</strong><p>or stay on longer, on your own tab</p></div></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>money</h2>
+    <p>you get yourself here. the stay will be free or low cost, and i'm still working that out with the garden. i don't want this to be a drain on anyone, so if it's not free it'll go by what you can afford.</p>
+    <p>if you want to stay past monday, you're welcome to, you just cover those nights yourself.</p>
+  </section>
+
+  <section>
+    <h2>getting there</h2>
+    <p>fly into porto (OPO). the garden is a short drive from the airport. i'll send the exact address and help match people up for rides once you say yes.</p>
+  </section>
+
+  <section>
+    <h2>bring</h2>
+    <p class="note">the garden is normally closed in winter. the big rooms are cold and hard to heat, so warmth lives in the sauna, the hot tub, and by the fire. dress for that.</p>
+    <ul class="bring" style="margin-top:1.25rem">
+      <li>wool socks and slippers</li>
+      <li>a big sweater, layers</li>
+      <li>rain jacket, boots</li>
+      <li>swimwear and a robe</li>
+      <li>a hot water bottle</li>
+      <li>music, an instrument</li>
+    </ul>
+  </section>
+
+  <section class="rsvp" id="rsvp">
+    <h2>are you coming?</h2>
+    <p>tell me roughly when, so i can plan beds and food. nothing is binding yet.</p>
+    <form id="f" novalidate>
+      <div>
+        <label for="name">your name</label>
+        <input type="text" id="name" name="name" autocomplete="name" required>
+      </div>
+      <fieldset>
+        <legend>which days <span class="hint">(tap all that apply)</span></legend>
+        <div class="chips">
+          <label class="chip"><input type="checkbox" id="d-thu" name="days" value="thu 19"><span>thu 19</span></label>
+          <label class="chip"><input type="checkbox" id="d-fri" name="days" value="fri 20"><span>fri 20</span></label>
+          <label class="chip"><input type="checkbox" id="d-sat" name="days" value="sat 21"><span>sat 21</span></label>
+          <label class="chip"><input type="checkbox" id="d-sun" name="days" value="sun 22"><span>sun 22</span></label>
+          <label class="chip"><input type="checkbox" id="d-mon" name="days" value="mon 23"><span>mon 23</span></label>
+          <label class="chip"><input type="checkbox" id="d-longer" name="days" value="staying longer"><span>longer</span></label>
+        </div>
+      </fieldset>
+      <div>
+        <label for="status">how sure are you?</label>
+        <select id="status" name="status">
+          <option>yes, i'm coming</option>
+          <option>very likely</option>
+          <option>trying to make it work</option>
+          <option>can't, but sending love</option>
+        </select>
+      </div>
+      <div>
+        <label for="money">for the stay <span class="hint">(honest answers help me plan, no judgement)</span></label>
+        <select id="money" name="money">
+          <option>i can pay my share</option>
+          <option>i can chip in a bit</option>
+          <option>i'd need it to be free</option>
+          <option>i could cover someone else too</option>
+        </select>
+      </div>
+      <div>
+        <label for="plus">bringing someone? <span class="hint">(name, if so)</span></label>
+        <input type="text" id="plus" name="plus">
+      </div>
+      <div>
+        <label for="food">food things</label>
+        <input type="text" id="food" name="food" placeholder="vegan, allergies, anything">
+      </div>
+      <div>
+        <label for="note">anything else</label>
+        <textarea id="note" name="note" placeholder="i could bring a guitar, run a sauna session, cook one night…"></textarea>
+      </div>
+      <button type="submit">write my reply</button>
+    </form>
+    <div id="out" hidden>
+      <p>here's your reply. send it to me.</p>
+      <pre id="msg"></pre>
+      <div class="row">
+        <a class="btn" id="wa" href="#" target="_blank" rel="noopener" hidden>send on whatsapp</a>
+        <button type="button" class="ghost" id="copy">copy text</button>
+      </div>
+      <p class="hint" id="copied" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <section>
+    <p><a id="cal" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=leona%27s%20forest%20birthday&dates=20261119/20261124&location=The%20Garden%2C%20near%20Porto%2C%20Portugal&details=https%3A%2F%2Fbirthday.leona.garden">add it to your google calendar</a></p>
+  </section>
+
+  <footer>birthday.leona.garden · photos from <a href="https://thegarden.pt/" target="_blank" rel="noopener">the garden</a></footer>
+</main>
+
+<script>
+// leona's whatsapp number, digits only with country code (e.g. "4917612345678").
+// leave empty to show only the copy button.
+const WHATSAPP = "";
+
+(function rain() {
+  const c = document.getElementById("rain");
+  if (!c || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const ctx = c.getContext("2d");
+  let w, h, drops = [];
+  const rgb = () => getComputedStyle(document.documentElement).getPropertyValue("--rain").trim();
+  function size() {
+    const r = c.getBoundingClientRect(), d = devicePixelRatio || 1;
+    w = r.width; h = r.height;
+    c.width = w * d; c.height = h * d; ctx.setTransform(d, 0, 0, d, 0, 0);
+    drops = Array.from({ length: Math.round(w / 9) }, () => ({
+      x: Math.random() * w, y: Math.random() * h,
+      l: 8 + Math.random() * 16, v: 2.5 + Math.random() * 3.5, a: 0.05 + Math.random() * 0.12
+    }));
+  }
+  let color = rgb();
+  matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change", () => { color = rgb(); });
+  new MutationObserver(() => { color = rgb(); }).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+  function tick() {
+    ctx.clearRect(0, 0, w, h);
+    ctx.lineWidth = 1;
+    for (const p of drops) {
+      ctx.strokeStyle = `rgba(${color},${p.a})`;
+      ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(p.x - p.l * 0.12, p.y + p.l); ctx.stroke();
+      p.y += p.v; p.x -= p.v * 0.12;
+      if (p.y > h) { p.y = -p.l; p.x = Math.random() * w; }
+    }
+    requestAnimationFrame(tick);
+  }
+  size(); addEventListener("resize", size); tick();
+})();
+
+(function form() {
+  const f = document.getElementById("f");
+  const out = document.getElementById("out");
+  const msg = document.getElementById("msg");
+  const wa = document.getElementById("wa");
+  const copied = document.getElementById("copied");
+  f.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const name = f.name.value.trim();
+    if (!name) { f.name.focus(); f.name.setAttribute("aria-invalid", "true"); return; }
+    f.name.removeAttribute("aria-invalid");
+    const days = [...f.querySelectorAll('input[name=days]:checked')].map(i => i.value);
+    const lines = [
+      `forest birthday rsvp: ${name}`,
+      `${f.status.value}`,
+      days.length ? `days: ${days.join(", ")}` : "days: not sure yet",
+      `stay: ${f.money.value}`,
+      f.plus.value.trim() && `bringing: ${f.plus.value.trim()}`,
+      f.food.value.trim() && `food: ${f.food.value.trim()}`,
+      f.note.value.trim() && `\n${f.note.value.trim()}`
+    ].filter(Boolean);
+    const text = lines.join("\n");
+    msg.textContent = text;
+    if (WHATSAPP) { wa.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`; wa.hidden = false; }
+    out.hidden = false; copied.textContent = "";
+    out.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  });
+  document.getElementById("copy").addEventListener("click", () => {
+    const t = msg.textContent;
+    const done = () => { copied.textContent = "copied. paste it to me wherever we usually talk."; };
+    const fallback = () => {
+      const r = document.createRange(); r.selectNodeContents(msg);
+      const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+      copied.textContent = "selected. copy it and send it to me.";
+    };
+    try { navigator.clipboard.writeText(t).then(done, fallback); } catch { fallback(); }
+  });
+})();
+</script>
+</body>
+</html>
