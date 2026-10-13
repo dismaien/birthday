@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* layout: one narrow column like a folded invitation, rain over the opening, a weekend strip, then practical notes and an rsvp card */
+/* layout: one narrow column like a folded invitation, rain falling behind the whole page, a weekend strip, then practical notes and an rsvp card */
 :root {
   --fog: #e2e6df;        /* wet morning, page ground */
   --fog-deep: #d3d9d1;   /* panels */
@@ -68,8 +68,8 @@ body {
 }
 
 /* opening */
-.hero { position: relative; padding-block: 4.5rem 1rem; isolation: isolate; }
-#rain { position: absolute; inset: 0 -20px; width: calc(100% + 40px); height: 100%; z-index: -1; pointer-events: none; }
+.hero { padding-block: 4.5rem 1rem; }
+#rain { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
 .eyebrow {
   font: 500 0.75rem/1 var(--mono);
   letter-spacing: 0.12em;
@@ -198,10 +198,10 @@ footer { font: 0.8rem/1.5 var(--mono); color: var(--moss); }
 </style>
 </head>
 <body>
+<canvas id="rain" aria-hidden="true"></canvas>
 <main class="wrap">
 
   <header class="hero">
-    <canvas id="rain" aria-hidden="true"></canvas>
     <p class="eyebrow">an invitation · november 2026</p>
     <h1>a forest <span class="glow">birthday</span></h1>
     <p class="lede">come celebrate my birthday with me at the garden. come for a day, or a week, or however long you want.</p>
@@ -349,7 +349,7 @@ const WHATSAPP = "4917661358090";
     const r = c.getBoundingClientRect(), d = devicePixelRatio || 1;
     w = r.width; h = r.height;
     c.width = w * d; c.height = h * d; ctx.setTransform(d, 0, 0, d, 0, 0);
-    drops = Array.from({ length: Math.round(w / 9) }, () => ({
+    drops = Array.from({ length: Math.round(w * h / 7000) }, () => ({
       x: Math.random() * w, y: Math.random() * h,
       l: 8 + Math.random() * 16, v: 2.5 + Math.random() * 3.5, a: 0.05 + Math.random() * 0.12
     }));
