@@ -232,6 +232,24 @@ html.scrapbook figcaption { padding-inline: 4px; }
 }
 @media (prefers-reduced-motion: reduce) { .is-steaming .steam i { animation: none; } }
 
+/* candles: dark until tapped */
+.candles { all: unset; display: block; position: relative; width: 100%; cursor: pointer; overflow: hidden; }
+.candles:focus-visible { outline: 2px solid var(--lantern); outline-offset: 2px; }
+.candles img { filter: brightness(0.14) saturate(0.3); transition: filter 1.6s ease; }
+.candles[aria-pressed="true"] img { filter: none; animation: candlelight 3.2s ease-in-out 1.6s infinite; }
+@keyframes candlelight { 0%, 100% { filter: brightness(1); } 40% { filter: brightness(0.92); } 70% { filter: brightness(1.06); } }
+.cglow {
+  position: absolute; width: 22%; aspect-ratio: 1; margin: -11% 0 0 -11%;
+  border-radius: 50%; pointer-events: none; mix-blend-mode: screen;
+  background: radial-gradient(closest-side, rgba(255, 190, 90, 0.55), rgba(255, 140, 40, 0));
+  opacity: 0; transform: scale(0.6); transition: opacity 1.2s ease, transform 1.2s ease;
+}
+.candles[aria-pressed="true"] .cglow { opacity: 1; transform: scale(1); animation: glowflicker 2.2s ease-in-out 1.2s infinite; }
+@keyframes glowflicker { 0%, 100% { transform: scale(1); } 50% { transform: scale(0.9); } }
+@media (prefers-reduced-motion: reduce) {
+  .candles[aria-pressed="true"] img, .candles[aria-pressed="true"] .cglow { animation: none; }
+}
+
 /* the weekend */
 .days { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--line); }
 .days li {
@@ -405,7 +423,7 @@ footer { font: 0.8rem/1.5 var(--mono); color: var(--moss); }
   <section>
     <h2>the weekend <svg class="doodle" style="--r:-4deg" aria-hidden="true"><use href="#d-moon"/></svg></h2>
     <p>mostly this is time to talk, hang out and catch up. the rest is optional.</p>
-    <figure class="band bleed"><img src="img/candles.jpg" width="1600" height="734" alt="candles burning on a wooden table at night" loading="lazy"></figure>
+    <figure class="band bleed"><button type="button" class="candles" aria-pressed="false" aria-label="light the candles"><img src="img/candles.jpg" width="1600" height="734" alt="candles on a wooden table at night" loading="lazy"><span class="cglow" style="left: 44%; top: 13%;"></span><span class="cglow" style="left: 63%; top: 20%;"></span></button><figcaption id="candles-cap">tap to light the candles</figcaption></figure>
     <ol class="days">
       <li><time>fri 20</time><div><strong>arrive</strong><p>settle in, a nice dinner cooked for us, catching up, first sauna</p></div></li>
       <li><time>sat 21</time><div><strong>hang out, then party</strong><p>long talks, forest walks, hot tub, the full gym if you want it. dinner, then dancing into my birthday at midnight</p></div></li>
@@ -630,6 +648,18 @@ const WHATSAPP = "4917661358090";
     }
     if (items.length) requestAnimationFrame(draw); else { running = false; ctx.clearRect(0, 0, w, h); }
   }
+})();
+
+(function candles() {
+  const b = document.querySelector(".candles");
+  const cap = document.getElementById("candles-cap");
+  if (!b) return;
+  b.addEventListener("click", () => {
+    const lit = b.getAttribute("aria-pressed") !== "true";
+    b.setAttribute("aria-pressed", String(lit));
+    b.setAttribute("aria-label", lit ? "blow out the candles" : "light the candles");
+    cap.textContent = lit ? "make a wish" : "tap to light the candles";
+  });
 })();
 </script>
 </body>
