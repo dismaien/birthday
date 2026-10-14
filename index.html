@@ -146,6 +146,12 @@ h2 { display: flex; align-items: center; gap: 0.6rem; }
   .hero .d-mush { display: block; position: absolute; right: 1.5rem; margin-top: 2rem; width: 3.6rem; height: 3.6rem; --r: -8deg; }
 }
 
+/* sleeps countdown: moss grows over the stone as the weekend gets closer */
+.sleeps { display: flex; align-items: center; gap: 0.9rem; margin-top: 1.75rem; }
+.sleeps .stone { width: 4.5rem; height: auto; flex: none; }
+.sleeps p { margin: 0; font: 1.6rem/1.1 var(--hand); color: var(--pine); }
+.sleeps b { color: var(--lantern); font-weight: 400; }
+
 /* photos */
 .bleed { margin-inline: -20px; }
 .bleed img, .band img { display: block; width: 100%; max-width: 100%; height: auto; }
@@ -357,6 +363,16 @@ footer { font: 0.8rem/1.5 var(--mono); color: var(--moss); }
       <dt>the day</dt><dd>sun 22 nov</dd>
       <dt>where</dt><dd>the garden, a forest near porto, portugal</dd>
     </dl>
+    <div class="sleeps">
+      <svg class="stone" viewBox="0 0 80 56" aria-hidden="true">
+        <defs><clipPath id="stone-clip"><path d="M6 51 C1 37 10 15 30 9 C47 4 67 11 74 30 C78 41 76 49 71 51 Z"/></clipPath></defs>
+        <path d="M6 51 C1 37 10 15 30 9 C47 4 67 11 74 30 C78 41 76 49 71 51 Z" fill="#8d958c"/>
+        <path d="M22 30 C26 28 30 29 33 31 M50 22 C53 21 56 22 58 24" stroke="#737b72" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <g clip-path="url(#stone-clip)"><path id="moss" fill="#5e9a58" d="M0 0 H80 V10 Z"/><g id="moss-dots" fill="#4b8446"></g></g>
+        <path d="M2 52 H78" stroke="var(--line)" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <p id="sleeps-text">sleeps until the forest</p>
+    </div>
     <figure class="hero-photo bleed">
       <img src="img/forest.jpg" width="1600" height="900" alt="the lake at the garden from above, surrounded by forest">
       <figcaption>the lake from above. 9 hectares of forest, two springs</figcaption>
@@ -684,6 +700,29 @@ function floatLantern(from) {
     { transform: `translate(-4px, ${-rise}px) rotate(0deg)`, opacity: 0 }
   ], { duration: 6500, easing: "ease-in-out" }).onfinish = () => el.remove();
 }
+
+(function sleeps() {
+  const text = document.getElementById("sleeps-text");
+  const moss = document.getElementById("moss");
+  const dots = document.getElementById("moss-dots");
+  if (!text) return;
+  const now = new Date();
+  const today = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+  const start = Date.UTC(2026, 9, 13), arrive = Date.UTC(2026, 10, 20), leave = Date.UTC(2026, 10, 23);
+  const n = Math.round((arrive - today) / 864e5);
+  if (n > 1) text.innerHTML = `<b>${n}</b> sleeps until the forest`;
+  else if (n === 1) text.innerHTML = "<b>1</b> sleep until the forest";
+  else if (n === 0) text.textContent = "today. see you in the forest";
+  else if (today <= leave) text.textContent = "we're in the forest";
+  else text.textContent = "thank you for coming";
+  const k = Math.min(1, Math.max(0.08, (today - start) / (arrive - start)));
+  const y = 6 + k * 48;
+  let d = `M0 0 H80 V${y.toFixed(1)}`;
+  for (let x = 80; x > 0; x -= 10) d += ` Q${x - 5} ${(y + (x % 20 ? 4 : -2)).toFixed(1)} ${x - 10} ${y.toFixed(1)}`;
+  moss.setAttribute("d", d + " Z");
+  const pts = [[24, 0.3], [40, 0.15], [55, 0.4], [33, 0.7], [62, 0.75], [18, 0.85]];
+  dots.innerHTML = pts.filter(([, f]) => f < k + 0.1).map(([x, f]) => `<circle cx="${x}" cy="${(8 + f * (y - 8)).toFixed(1)}" r="2.2"/>`).join("");
+})();
 </script>
 </body>
 </html>
