@@ -270,7 +270,7 @@ footer { font: 0.8rem/1.5 var(--mono); color: var(--moss); }
       <div class="space">
         <figure class="wide"><img src="img/kitchen.jpg" width="1800" height="848" alt="the garden kitchen with dried hydrangeas hanging from the ceiling and a chalkboard wall" loading="lazy"></figure>
         <h3>the kitchen</h3>
-        <p>where the soup happens.</p>
+        <p>where our cook makes dinner.</p>
       </div>
       <div class="space">
         <figure class="pair">
@@ -298,16 +298,17 @@ footer { font: 0.8rem/1.5 var(--mono); color: var(--moss); }
     <p>mostly this is time to talk, hang out and catch up. the rest is optional.</p>
     <figure class="band bleed"><img src="img/candles.jpg" width="1600" height="734" alt="candles burning on a wooden table at night" loading="lazy"></figure>
     <ol class="days">
-      <li><time>fri 20</time><div><strong>arrive</strong><p>cozy up in the cork room, soup, catching up, first sauna</p></div></li>
+      <li><time>fri 20</time><div><strong>arrive</strong><p>settle in, a nice dinner cooked for us, catching up, first sauna</p></div></li>
       <li><time>sat 21</time><div><strong>hang out, then party</strong><p>long talks, forest walks, hot tub, the full gym if you want it. dinner, then dancing into my birthday at midnight</p></div></li>
       <li class="bday"><time>sun 22</time><div><strong>my birthday</strong><p>slow morning, long lunch, more talking, more sauna</p></div></li>
-      <li><time>mon 23</time><div><strong>goodbyes</strong><p>or stay on longer, on your own tab</p></div></li>
+      <li><time>mon 23</time><div><strong>send-off brunch</strong><p>then goodbyes, or stay on longer on your own tab</p></div></li>
     </ol>
   </section>
 
   <section>
     <h2>money</h2>
-    <p>you get yourself here. the stay will be free or low cost, and i'm still working that out with the garden. i don't want this to be a drain on anyone, so if it's not free it'll go by what you can afford.</p>
+    <p>the stay and food are free. i want to cover it for everyone. you just get yourself here.</p>
+    <p>if your financial situation is very comfortable, donations to help cover costs are welcome, but not necessary.</p>
     <p>if you want to stay past monday, you're welcome to, you just cover those nights yourself.</p>
   </section>
 
@@ -357,12 +358,11 @@ footer { font: 0.8rem/1.5 var(--mono); color: var(--moss); }
         </select>
       </div>
       <div>
-        <label for="money">for the stay <span class="hint">(honest answers help me plan, no judgement)</span></label>
+        <label for="money">a donation? <span class="hint">(totally optional)</span></label>
         <select id="money" name="money">
-          <option>i can pay my share</option>
-          <option>i can chip in a bit</option>
-          <option>i'd need it to be free</option>
-          <option>i could cover someone else too</option>
+          <option>not this time</option>
+          <option>i'd like to chip in</option>
+          <option>i'd like to cover someone else's share</option>
         </select>
       </div>
       <div>
@@ -450,7 +450,7 @@ const WHATSAPP = "4917661358090";
       `forest birthday rsvp: ${name}`,
       `${f.status.value}`,
       days.length ? `days: ${days.join(", ")}` : "days: not sure yet",
-      `stay: ${f.money.value}`,
+      `donation: ${f.money.value}`,
       f.plus.value.trim() && `bringing: ${f.plus.value.trim()}`,
       f.food.value.trim() && `food: ${f.food.value.trim()}`,
       f.note.value.trim() && `\n${f.note.value.trim()}`
