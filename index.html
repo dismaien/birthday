@@ -19,7 +19,7 @@
 <meta name="theme-color" content="#1d2b25">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Caveat+Brush&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 /* layout: one narrow column like a folded invitation, rain falling behind the whole page, a weekend strip, then practical notes and an rsvp card */
 :root {
@@ -34,6 +34,7 @@
   --display: "Young Serif", Georgia, "Times New Roman", serif;
   --body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --hand: "Caveat Brush", "Young Serif", cursive;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
@@ -83,7 +84,28 @@ h1 {
   margin: 0;
   text-wrap: balance;
 }
-h1 .glow { color: var(--lantern); }
+h1 .glow {
+  color: var(--lantern);
+  font-family: var(--hand);
+  font-size: 1.4em;
+  letter-spacing: 0;
+  line-height: 0.85;
+  display: inline-block;
+  transform: rotate(-4deg);
+  transform-origin: 0 60%;
+}
+h1 .i { position: relative; display: inline-block; }
+h1 .flame {
+  position: absolute; left: 50%; bottom: 0.62em;
+  width: 0.2em; height: 0.3em; margin-left: -0.1em;
+  transform-origin: 50% 100%;
+  animation: flicker 2.6s ease-in-out infinite;
+}
+@keyframes flicker {
+  0%, 100% { transform: rotate(-3deg) scale(1, 1); }
+  30% { transform: rotate(4deg) scale(0.95, 1.08); }
+  60% { transform: rotate(-1deg) scale(1.04, 0.94); }
+}
 .lede { font-size: 1.25rem; line-height: 1.5; margin: 1.75rem 0 0; max-width: 32rem; }
 .facts {
   margin: 2rem 0 0;
@@ -212,7 +234,10 @@ footer { font: 0.8rem/1.5 var(--mono); color: var(--moss); }
   .bring { columns: 1; }
   .days li { grid-template-columns: 4.5rem 1fr; }
 }
-@media (prefers-reduced-motion: reduce) { #rain { display: none; } }
+@media (prefers-reduced-motion: reduce) {
+  #rain { display: none; }
+  h1 .flame { animation: none; }
+}
 </style>
 </head>
 <body>
@@ -221,7 +246,7 @@ footer { font: 0.8rem/1.5 var(--mono); color: var(--moss); }
 
   <header class="hero">
     <p class="eyebrow">an invitation · november 2026</p>
-    <h1>a forest <span class="glow">birthday</span></h1>
+    <h1 aria-label="a forest birthday">a forest <span class="glow" aria-hidden="true">b<span class="i">ı<svg class="flame" viewBox="0 0 20 30"><path d="M10 1 C14 8 18 12 18 19 a8 8 0 0 1 -16 0 C2 12 6 8 10 1Z" fill="currentColor"/><path d="M10 13 C12 16 13 18 13 21 a3 3 0 0 1 -6 0 C7 18 8 16 10 13Z" fill="#fbe3b0"/></svg></span>rthday</span></h1>
     <p class="lede">come celebrate my birthday with me at the garden. come for a day, or a week, or however long you want.</p>
     <dl class="facts">
       <dt>when</dt><dd>fri 20 – mon 23 nov</dd>
