@@ -270,7 +270,7 @@ footer { font: 0.8rem/1.5 var(--mono); color: var(--moss); }
       <div class="space">
         <figure class="wide"><img src="img/kitchen.jpg" width="1800" height="848" alt="the garden kitchen with dried hydrangeas hanging from the ceiling and a chalkboard wall" loading="lazy"></figure>
         <h3>the kitchen</h3>
-        <p>where our cook makes dinner.</p>
+        <p>ours to use. for snacks, tea, or cooking something of your own. the big meals come from the main kitchen.</p>
       </div>
       <div class="space">
         <figure class="pair">
@@ -306,10 +306,10 @@ footer { font: 0.8rem/1.5 var(--mono); color: var(--moss); }
   </section>
 
   <section>
-    <h2>money</h2>
-    <p>the stay and food are free. i want to cover it for everyone. you just get yourself here.</p>
-    <p>if your financial situation is very comfortable, donations to help cover costs are welcome, but not necessary.</p>
-    <p>if you want to stay past monday, you're welcome to, you just cover those nights yourself.</p>
+    <h2>what it costs</h2>
+    <p>nothing. your bed and your meals are my gift to you. you just get yourself here.</p>
+    <p>if you're very comfortable and want to help with costs, i'd welcome that. but please come either way.</p>
+    <p>staying past monday is welcome too. those extra nights are on you.</p>
   </section>
 
   <section>
@@ -358,14 +358,6 @@ footer { font: 0.8rem/1.5 var(--mono); color: var(--moss); }
         </select>
       </div>
       <div>
-        <label for="money">a donation? <span class="hint">(totally optional)</span></label>
-        <select id="money" name="money">
-          <option>not this time</option>
-          <option>i'd like to chip in</option>
-          <option>i'd like to cover someone else's share</option>
-        </select>
-      </div>
-      <div>
         <label for="plus">bringing someone? <span class="hint">(name, if so)</span></label>
         <input type="text" id="plus" name="plus">
       </div>
@@ -376,6 +368,9 @@ footer { font: 0.8rem/1.5 var(--mono); color: var(--moss); }
       <div>
         <label for="note">anything else</label>
         <textarea id="note" name="note" placeholder="i could bring a guitar, run a sauna session, cook one night…"></textarea>
+      </div>
+      <div class="chips">
+        <label class="chip"><input type="checkbox" id="chipin" name="chipin"><span>i'd like to chip in</span></label>
       </div>
       <button type="submit">write my reply</button>
     </form>
@@ -450,9 +445,9 @@ const WHATSAPP = "4917661358090";
       `forest birthday rsvp: ${name}`,
       `${f.status.value}`,
       days.length ? `days: ${days.join(", ")}` : "days: not sure yet",
-      `donation: ${f.money.value}`,
       f.plus.value.trim() && `bringing: ${f.plus.value.trim()}`,
       f.food.value.trim() && `food: ${f.food.value.trim()}`,
+      f.chipin.checked && "i'd like to chip in",
       f.note.value.trim() && `\n${f.note.value.trim()}`
     ].filter(Boolean);
     const text = lines.join("\n");
