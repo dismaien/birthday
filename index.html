@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scrapbook">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -35,6 +35,9 @@
   --body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
   --hand: "Caveat Brush", "Young Serif", cursive;
+  --print: #f5f3ec;     /* photo print border, same in both themes */
+  --tape: rgba(231, 166, 74, 0.55);
+  --tape-2: rgba(125, 184, 139, 0.55);
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
@@ -51,7 +54,7 @@
 }
 
 * { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; }
+html { -webkit-text-size-adjust: 100%; overflow-x: clip; }
 body {
   margin: 0;
   background: var(--fog);
@@ -178,6 +181,36 @@ figcaption { font: 0.75rem/1.4 var(--mono); color: var(--moss); padding: 0.5rem 
 .mosaic .small img { aspect-ratio: auto; }
 .mosaic .full { grid-column: span 2; }
 .mosaic .full img { aspect-ratio: 2 / 1; }
+
+/* scrapbook: photos as taped prints. remove class="scrapbook" from <html> to turn it all off */
+html.scrapbook .bleed { margin-inline: 0; }
+html.scrapbook :is(.hero-photo, .things li, .space figure, .map) { position: relative; }
+html.scrapbook :is(.hero-photo img, .things img, .space img, .map img) {
+  border: 6px solid var(--print);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.28);
+}
+html.scrapbook :is(.hero-photo, .space figure, .map, .things img) { transition: transform 0.35s ease; }
+html.scrapbook .hero-photo { transform: rotate(-1.2deg); }
+html.scrapbook .map { transform: rotate(1deg); }
+html.scrapbook .things li:nth-child(odd) img { transform: rotate(-2deg); }
+html.scrapbook .things li:nth-child(even) img { transform: rotate(1.6deg); }
+html.scrapbook .space:nth-child(odd) figure { transform: rotate(0.9deg); }
+html.scrapbook .space:nth-child(even) figure { transform: rotate(-1.1deg); }
+html.scrapbook :is(.hero-photo, .space figure, .map):hover,
+html.scrapbook .things li:hover img { transform: rotate(0deg) scale(1.015); }
+html.scrapbook :is(.hero-photo, .things li, .space figure, .map)::before {
+  content: ""; position: absolute; z-index: 2; top: -10px; left: 50%;
+  width: 92px; height: 24px; margin-left: -46px;
+  background: var(--tape);
+  clip-path: polygon(0 8%, 6% 0, 12% 10%, 18% 0, 24% 8%, 100% 0, 96% 50%, 100% 100%, 0 100%, 4% 50%);
+  transform: rotate(-4deg);
+  pointer-events: none;
+}
+html.scrapbook :is(.things li:nth-child(even), .space:nth-child(even) figure)::before { background: var(--tape-2); transform: rotate(5deg); }
+html.scrapbook figcaption { padding-inline: 4px; }
+@media (prefers-reduced-motion: reduce) {
+  html.scrapbook :is(.hero-photo, .space figure, .map, .things img) { transition: none; }
+}
 
 /* the weekend */
 .days { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--line); }
