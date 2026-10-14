@@ -212,6 +212,25 @@ html.scrapbook figcaption { padding-inline: 4px; }
   html.scrapbook :is(.hero-photo, .space figure, .map, .things img) { transition: none; }
 }
 
+/* steam rising off the hot tub and sauna */
+.steamy { position: relative; }
+.steam { position: absolute; z-index: 1; pointer-events: none; left: 12%; right: 12%; }
+.steam i {
+  position: absolute; bottom: 0; width: 42%; height: 45%; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0));
+  filter: blur(5px); opacity: 0;
+}
+.steam i:nth-child(1) { left: 5%; }
+.steam i:nth-child(2) { left: 30%; animation-delay: 1.4s !important; }
+.steam i:nth-child(3) { left: 55%; animation-delay: 2.8s !important; }
+.is-steaming .steam i { animation: steam 4.2s ease-out infinite; }
+@keyframes steam {
+  0% { transform: translateY(20%) scale(0.6); opacity: 0; }
+  25% { opacity: 0.9; }
+  100% { transform: translate(12%, -130%) scale(1.5); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .is-steaming .steam i { animation: none; } }
+
 /* the weekend */
 .days { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--line); }
 .days li {
@@ -327,8 +346,8 @@ footer { font: 0.8rem/1.5 var(--mono); color: var(--moss); }
     <p>there are a ton of instruments, so we can jam and sing. there's a projector for karaoke or movies. i won't be making a program. it's co-created, and any and all additions or contributions are welcome. let's make it a cozy, fun time together.</p>
     <p>i'd love to have you here.</p>
     <ul class="things">
-      <li><img src="img/hottub.jpg" width="1600" height="1242" alt="a wooden hot tub in the forest" loading="lazy" style="object-position: 30% 100%"><div><b>hot tub</b><span>steaming, in the rain</span></div></li>
-      <li><img src="img/sauna.jpg" width="1205" height="1600" alt="inside the cedar barrel sauna" loading="lazy"><div><b>sauna</b><span>cedar, on the lake</span></div></li>
+      <li class="steamy"><span class="steam" aria-hidden="true" style="top: 22%; height: 40%;"><i></i><i></i><i></i></span><img src="img/hottub.jpg" width="1600" height="1242" alt="a wooden hot tub in the forest" loading="lazy" style="object-position: 30% 100%"><div><b>hot tub</b><span>steaming, in the rain</span></div></li>
+      <li class="steamy"><span class="steam" aria-hidden="true" style="top: 18%; height: 55%;"><i></i><i></i><i></i></span><img src="img/sauna.jpg" width="1205" height="1600" alt="inside the cedar barrel sauna" loading="lazy"><div><b>sauna</b><span>cedar, on the lake</span></div></li>
       <li><img src="img/dance.jpg" width="1600" height="1066" alt="people moving in the big wooden dance hall" loading="lazy"><div><b>dancing</b><span>the big wooden hall, music</span></div></li>
       <li><img src="img/night.jpg" width="1152" height="1600" alt="the dance hall lit up at night under a full moon" loading="lazy" style="object-position: 50% 70%"><div><b>nights</b><span>the hall lit up under the moon</span></div></li>
     </ul>
@@ -554,6 +573,15 @@ const WHATSAPP = "4917661358090";
     };
     try { navigator.clipboard.writeText(t).then(done, fallback); } catch { fallback(); }
   });
+})();
+
+(function steam() {
+  const els = document.querySelectorAll(".steamy");
+  if (!("IntersectionObserver" in window)) { els.forEach(e => e.classList.add("is-steaming")); return; }
+  const io = new IntersectionObserver(entries => {
+    for (const e of entries) e.target.classList.toggle("is-steaming", e.isIntersecting);
+  }, { threshold: 0.3 });
+  els.forEach(e => io.observe(e));
 })();
 </script>
 </body>
