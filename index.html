@@ -123,6 +123,25 @@ figcaption { font: 0.75rem/1.4 var(--mono); color: var(--moss); padding: 0.5rem 
 .things b { display: block; font-weight: 600; }
 .things span { color: var(--moss); font-size: 0.95rem; }
 
+/* the place */
+.place { display: flex; flex-direction: column; gap: 2.5rem; margin-top: 1.5rem; }
+.space h3 { font: 400 1.35rem/1.2 var(--display); margin: 0 0 0.35rem; }
+.space p { margin: 0; color: var(--moss); max-width: 60ch; }
+.space figure, .map { margin: 0 0 0.85rem; }
+.space img, .map img { display: block; width: 100%; max-width: 100%; height: auto; background: var(--fog-deep); }
+.wide img { aspect-ratio: 16 / 9; object-fit: cover; }
+.pair { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 0.5rem; }
+.pair img { aspect-ratio: 4 / 3; height: 100%; object-fit: cover; }
+.mosaic { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5rem; }
+.mosaic > span { display: block; min-width: 0; }
+.mosaic .tall { grid-row: span 2; }
+.mosaic img { height: 100%; object-fit: cover; }
+.mosaic .tall img { aspect-ratio: 2 / 3; }
+.mosaic .small img { aspect-ratio: auto; }
+.mosaic .full { grid-column: span 2; }
+.mosaic .full img { aspect-ratio: 2 / 1; }
+.map a { display: block; }
+
 /* the weekend */
 .days { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--line); }
 .days li {
@@ -228,6 +247,53 @@ footer { font: 0.8rem/1.5 var(--mono); color: var(--moss); }
     </ul>
   </section>
 
+  <section id="place">
+    <h2>the place</h2>
+    <p>9 hectares of forest near porto, with a lake, two springs, and mossy boulders everywhere.</p>
+    <figure class="map bleed">
+      <a href="img/map.jpg" target="_blank" rel="noopener"><img src="img/map.jpg" width="1800" height="1608" alt="a labelled aerial map of the garden: the lake, the salon, the hot tub, the sauna, cabins, glamping and the forest paths" loading="lazy"></a>
+      <figcaption>the garden from above. tap to open it big</figcaption>
+    </figure>
+    <div class="place">
+      <div class="space">
+        <figure class="pair">
+          <img src="img/corkroom.jpg" width="1800" height="1014" alt="the cork room in low light, with floor cushions and a low wooden tea table" loading="lazy">
+          <img src="img/corkroom-bright.jpg" width="1800" height="1012" alt="the cork room in daylight, a long room with a cork floor and a mirror wall" loading="lazy">
+        </figure>
+        <h3>the cork room</h3>
+        <p>our warm living room. cork floor, cushions, tea. this is where we'll hang out.</p>
+      </div>
+      <div class="space">
+        <figure class="wide"><img src="img/salon.jpg" width="1500" height="779" alt="the salon, a big wooden-roofed hall with guitars, drums and speakers by tall windows" loading="lazy"></figure>
+        <h3>the salon</h3>
+        <p>the big hall, full of instruments, looking out into the trees.</p>
+      </div>
+      <div class="space">
+        <figure class="wide"><img src="img/kitchen.jpg" width="1800" height="848" alt="the garden kitchen with dried hydrangeas hanging from the ceiling and a chalkboard wall" loading="lazy"></figure>
+        <h3>the kitchen</h3>
+        <p>where the soup happens.</p>
+      </div>
+      <div class="space">
+        <figure class="pair">
+          <img src="img/villa-room.jpg" width="1600" height="1200" alt="a bedroom with stone walls, blue tiles and a fireplace" loading="lazy">
+          <img src="img/villa.jpg" width="1280" height="960" alt="the old stone guest villa and its cobbled courtyard at dusk" loading="lazy">
+        </figure>
+        <h3>sleeping</h3>
+        <p>a dorm, little cabins, a yurt, and rooms in the old stone guest villa.</p>
+      </div>
+      <div class="space">
+        <figure class="mosaic">
+          <span class="tall"><img src="img/boulder.jpg" width="1066" height="1600" alt="a huge moss-covered boulder in the forest, with wild agapanthus in front" loading="lazy"></span>
+          <span class="small"><img src="img/mossface.jpg" width="1500" height="1001" alt="a stone face carved into a mossy tree trunk" loading="lazy"></span>
+          <span class="small"><img src="img/fountain.jpg" width="1500" height="1000" alt="a small stone fountain deep in green forest" loading="lazy"></span>
+          <span class="full"><img src="img/dining.jpg" width="1500" height="1000" alt="people eating at a long wooden table under a woven arch in the trees" loading="lazy"></span>
+        </figure>
+        <h3>the forest</h3>
+        <p>mossy boulders, stone faces, little fountains, long tables under the trees.</p>
+      </div>
+    </div>
+  </section>
+
   <section>
     <h2>the weekend</h2>
     <p>mostly this is time to talk, hang out and catch up. the rest is optional.</p>
@@ -254,7 +320,7 @@ footer { font: 0.8rem/1.5 var(--mono); color: var(--moss); }
 
   <section>
     <h2>bring</h2>
-    <p class="note">the garden is normally closed in winter, and the big halls are cold and hard to heat. so we'll hang out in the cork room, the small warm one usually used for yoga and meditation. the rest of the warmth is in the sauna and the hot tub. dress for the cold in between.</p>
+    <p class="note">the garden is normally closed in winter, and the big halls are cold and hard to heat. so we'll hang out in <a href="#place">the cork room</a>, the small warm one usually used for yoga and meditation. the rest of the warmth is in the sauna and the hot tub. dress for the cold in between.</p>
     <ul class="bring" style="margin-top:1.25rem">
       <li>wool socks and slippers</li>
       <li>a big sweater, layers</li>
