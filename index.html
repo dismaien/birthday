@@ -184,9 +184,11 @@ figcaption { font: 0.75rem/1.4 var(--mono); color: var(--moss); padding: 0.5rem 
 .days strong { font-weight: 600; }
 .days p { margin: 0; color: var(--moss); }
 
-/* bring list */
-.bring { columns: 2; column-gap: 2rem; padding-left: 1.1rem; margin: 0; }
-.bring li { break-inside: avoid; margin-bottom: 0.25rem; }
+/* packing */
+.pack { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 2rem; margin-top: 1.5rem; }
+.pack h3 { font: 500 0.75rem/1 var(--mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--moss); margin: 0 0 0.6rem; }
+.pack ul { margin: 0; padding-left: 1.1rem; }
+.pack li { margin-bottom: 0.25rem; }
 
 .note {
   background: var(--fog-deep);
@@ -241,7 +243,7 @@ a.btn {
 footer { font: 0.8rem/1.5 var(--mono); color: var(--moss); }
 
 @media (max-width: 30rem) {
-  .bring { columns: 1; }
+  .pack { grid-template-columns: minmax(0, 1fr); }
   .days li { grid-template-columns: 4.5rem 1fr; }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -380,17 +382,29 @@ footer { font: 0.8rem/1.5 var(--mono); color: var(--moss); }
     <p>late november here is mild and wet. over the last ten years, these days were usually 13–18° during the day and 6–13° at night. about half of them had rain. some years it poured all weekend, some years it was dry and sunny.</p>
     <p>on average there are about 6–7 hours of sunshine a day, so depending on where you're coming from, you might actually get to recharge on sun a bit.</p>
     <p class="note">the garden is normally closed in winter, and the big halls are cold and hard to heat. so we'll hang out in the cork room, which is usually used for yoga and meditation. there's also a big kitchen in the stone house with a wood stove, and the cabins have electric radiators. the rest of the warmth is in the sauna and the hot tub. dress for potential cold in between.</p>
-    <ul class="bring" style="margin-top:1.25rem">
-      <li>wool socks and slippers</li>
-      <li>a big sweater, layers</li>
-      <li>an umbrella</li>
-    </ul>
-    <p style="margin-top:1rem">nice to have: rain jacket and boots, a robe (sauna and hot tub are nude, swimwear if you'd rather). towels are provided.</p>
+    <div class="pack">
+      <div>
+        <h3>bring</h3>
+        <ul>
+          <li>wool socks and slippers</li>
+          <li>a big sweater, layers</li>
+          <li>an umbrella</li>
+        </ul>
+      </div>
+      <div>
+        <h3>nice to have</h3>
+        <ul>
+          <li>a rain jacket and good boots</li>
+          <li>a robe (sauna and hot tub are nude, swimwear if you'd rather)</li>
+        </ul>
+      </div>
+    </div>
+    <p class="hint" style="margin-top:0.75rem">towels are provided.</p>
   </section>
 
   <section>
     <h2>photos and videos <svg class="doodle" style="--r:-7deg" aria-hidden="true"><use href="#d-camera"/></svg></h2>
-    <p>i love documenting my memories and would love to have audiovisual or other sensory evidence of our time together (olfactory is an option). i'll make a shared folder for everyone to upload to, and it all stays within the group.</p>
+    <p>i love documenting memories and would love to have audiovisual or other sensory evidence of our time together (olfactory, for example, is an option). so please take photos and videos whenever you feel like it or see something beautiful. i'll make a shared folder for everyone to upload to, and it all stays within the group.</p>
     <p>we can agree on a photo policy together. if you'd rather not be photographed, let me know.</p>
   </section>
 
