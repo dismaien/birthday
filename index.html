@@ -85,17 +85,21 @@ h1 {
   text-wrap: balance;
 }
 h1 .glow { color: var(--lantern); }
+.dateline { display: flex; align-items: center; gap: 1.25rem; margin-top: 1.75rem; }
+.dateline .lede { margin: 0; }
 .bigdate {
-  margin: 1.25rem 0 0;
-  font: 400 clamp(3.6rem, 20vw, 6.75rem)/0.9 var(--display);
-  letter-spacing: -0.03em;
+  flex: none; margin: 0; text-align: center;
+  font: 400 clamp(2.9rem, 12vw, 4rem)/0.95 var(--display);
+  letter-spacing: -0.02em;
   color: var(--lantern);
   background: linear-gradient(rgba(20, 70, 40, 0.3), rgba(20, 70, 40, 0.3)), url(img/fountain.jpg) center 40% / cover;
   -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 1.5px #6b7d70;
+  -webkit-text-stroke: 1.5px #4a5a4f;
   font-variant-numeric: lining-nums;
 }
+.bigdate span { display: block; }
+.bigdate .rule { height: 1.5px; background: #4a5a4f; margin: 0.3rem 0.1em; }
 .lede { font-size: 1.25rem; line-height: 1.5; margin: 1.75rem 0 0; max-width: 32rem; }
 .facts {
   margin: 2rem 0 0;
@@ -267,8 +271,10 @@ footer { font: 0.8rem/1.5 var(--mono); color: var(--moss); }
   <header class="hero">
     <p class="eyebrow">an invitation · november 2026</p>
     <h1>leona's forest <span class="glow">birthday</span></h1>
-    <p class="bigdate" aria-label="22 november">22.11.</p>
-    <p class="lede">come celebrate life with me at the garden.</p>
+    <div class="dateline">
+      <p class="bigdate" aria-label="22 november"><span>22</span><span class="rule"></span><span>11</span></p>
+      <p class="lede">come celebrate life with me at the garden.</p>
+    </div>
     <dl class="facts">
       <dt>when</dt><dd>fri 20 – mon 23 nov</dd>
       <dt>the day</dt><dd>sun 22 nov</dd>
@@ -365,7 +371,7 @@ footer { font: 0.8rem/1.5 var(--mono); color: var(--moss); }
     <h2>what it costs <svg class="doodle" style="--r:6deg" aria-hidden="true"><use href="#d-face"/></svg></h2>
     <p>nothing. your bed and your meals are my gift to you. you just get yourself here.</p>
     <p>i don't want cost to be a limiting factor for anyone. if flights are hard to afford, reach out to me.</p>
-    <p>if you're financially comfortable and want to help others come, i'll gladly accept.</p>
+    <p>if you're financially comfortable and want to support, i'll gladly accept.</p>
     <p>you can also stay past monday at discounted garden rates. i'll be here until early-mid december, and would love to have a small crew here for longer. reach out to me to arrange this.</p>
   </section>
 
