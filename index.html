@@ -85,6 +85,17 @@ h1 {
   text-wrap: balance;
 }
 h1 .glow { color: var(--lantern); }
+.bigdate {
+  margin: 1.5rem 0 0;
+  font: 400 clamp(6rem, 34vw, 12.5rem)/0.85 var(--display);
+  letter-spacing: -0.04em;
+  color: var(--lantern);
+  background: url(img/boulder.jpg) center 40% / cover;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1.5px var(--lantern);
+  font-variant-numeric: lining-nums;
+}
 .lede { font-size: 1.25rem; line-height: 1.5; margin: 1.75rem 0 0; max-width: 32rem; }
 .facts {
   margin: 2rem 0 0;
@@ -254,6 +265,7 @@ footer { font: 0.8rem/1.5 var(--mono); color: var(--moss); }
   <header class="hero">
     <p class="eyebrow">an invitation · november 2026</p>
     <h1>leona's forest <span class="glow">birthday</span></h1>
+    <p class="bigdate" aria-label="22 november">22.11</p>
     <p class="lede">come celebrate my birthday with me at the garden.</p>
     <dl class="facts">
       <dt>when</dt><dd>fri 20 – mon 23 nov</dd>
@@ -289,7 +301,7 @@ footer { font: 0.8rem/1.5 var(--mono); color: var(--moss); }
     <div class="place">
       <div class="space">
         <h3>the cork room</h3>
-        <p>our warm living room. cork floor, cushions, tea. this is where we'll hang out.</p>
+        <p>our warm living room, with mattresses, cushions, soft things and tea. this is where we'll hang out during the day. if lots of people come, it could also become an extra dorm at night.</p>
         <figure class="pair">
           <img src="img/corkroom.jpg" width="1800" height="1014" alt="the cork room in low light, with floor cushions and a low wooden tea table" loading="lazy">
           <img src="img/corkroom-bright.jpg" width="1800" height="1012" alt="the cork room in daylight, a long room with a cork floor and a mirror wall" loading="lazy">
@@ -350,7 +362,7 @@ footer { font: 0.8rem/1.5 var(--mono); color: var(--moss); }
     <p>nothing. your bed and your meals are my gift to you. you just get yourself here.</p>
     <p>i don't want cost to be a limiting factor for anyone. if flights are hard to afford, reach out to me.</p>
     <p>if you're financially comfortable and want to help others come, i'll gladly accept.</p>
-    <p>you can also stay past monday at discounted garden rates. i'll be here until early-mid december, and would love to have a small crew of you here for longer.</p>
+    <p>you can also stay past monday at discounted garden rates. i'll be here until early-mid december, and would love to have a small crew here for longer.</p>
   </section>
 
   <section>
