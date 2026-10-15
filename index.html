@@ -137,7 +137,8 @@ figcaption { font: 0.75rem/1.4 var(--mono); color: var(--moss); padding: 0.5rem 
 .place { display: flex; flex-direction: column; gap: 2.5rem; margin-top: 1.5rem; }
 .space h3 { font: 400 1.35rem/1.2 var(--display); margin: 0 0 0.35rem; }
 .space p { margin: 0; color: var(--moss); max-width: 60ch; }
-.space figure, .map { margin: 0 0 0.85rem; }
+.map { margin: 0 0 0.85rem; }
+.space figure { margin: 0.85rem 0 0; }
 .space img, .map img { display: block; width: 100%; max-width: 100%; height: auto; background: var(--fog-deep); }
 .wide img { aspect-ratio: 16 / 9; object-fit: cover; }
 .pair { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 0.5rem; }
@@ -282,40 +283,40 @@ footer { font: 0.8rem/1.5 var(--mono); color: var(--moss); }
     </figure>
     <div class="place">
       <div class="space">
+        <h3>the cork room</h3>
+        <p>our warm living room. cork floor, cushions, tea. this is where we'll hang out.</p>
         <figure class="pair">
           <img src="img/corkroom.jpg" width="1800" height="1014" alt="the cork room in low light, with floor cushions and a low wooden tea table" loading="lazy">
           <img src="img/corkroom-bright.jpg" width="1800" height="1012" alt="the cork room in daylight, a long room with a cork floor and a mirror wall" loading="lazy">
         </figure>
-        <h3>the cork room</h3>
-        <p>our warm living room. cork floor, cushions, tea. this is where we'll hang out.</p>
       </div>
       <div class="space">
-        <figure class="wide"><img src="img/salon.jpg" width="1500" height="779" alt="the salon, a big wooden-roofed hall with guitars, drums and speakers by tall windows" loading="lazy"></figure>
         <h3>the salon</h3>
         <p>the big hall, full of instruments, looking out into the trees.</p>
+        <figure class="wide"><img src="img/salon.jpg" width="1500" height="779" alt="the salon, a big wooden-roofed hall with guitars, drums and speakers by tall windows" loading="lazy"></figure>
       </div>
       <div class="space">
-        <figure class="wide"><img src="img/kitchen.jpg" width="1800" height="848" alt="the garden kitchen with dried hydrangeas hanging from the ceiling and a chalkboard wall" loading="lazy"></figure>
         <h3>the kitchen</h3>
         <p>ours to use. for snacks, tea, or cooking something of your own. the big meals come from the main kitchen.</p>
+        <figure class="wide"><img src="img/kitchen.jpg" width="1800" height="848" alt="the garden kitchen with dried hydrangeas hanging from the ceiling and a chalkboard wall" loading="lazy"></figure>
       </div>
       <div class="space">
+        <h3>sleeping</h3>
+        <p>a dorm, little cabins, a yurt, and rooms in the old stone guest villa.</p>
         <figure class="pair">
           <img src="img/villa-room.jpg" width="1600" height="1200" alt="a bedroom with stone walls, blue tiles and a fireplace" loading="lazy">
           <img src="img/villa.jpg" width="1280" height="960" alt="the old stone guest villa and its cobbled courtyard at dusk" loading="lazy">
         </figure>
-        <h3>sleeping</h3>
-        <p>a dorm, little cabins, a yurt, and rooms in the old stone guest villa.</p>
       </div>
       <div class="space">
+        <h3>the forest</h3>
+        <p>mossy boulders, stone faces, little fountains, long tables under the trees.</p>
         <figure class="mosaic">
           <span class="tall"><img src="img/boulder.jpg" width="1066" height="1600" alt="a huge moss-covered boulder in the forest, with wild agapanthus in front" loading="lazy"></span>
           <span class="small"><img src="img/mossface.jpg" width="1500" height="1001" alt="a stone face carved into a mossy tree trunk" loading="lazy"></span>
           <span class="small"><img src="img/fountain.jpg" width="1500" height="1000" alt="a small stone fountain deep in green forest" loading="lazy"></span>
           <span class="full"><img src="img/dining.jpg" width="1500" height="1000" alt="people eating at a long wooden table under a woven arch in the trees" loading="lazy"></span>
         </figure>
-        <h3>the forest</h3>
-        <p>mossy boulders, stone faces, little fountains, long tables under the trees.</p>
       </div>
     </div>
   </section>
