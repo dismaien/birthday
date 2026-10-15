@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="scrapbook">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -19,7 +19,7 @@
 <meta name="theme-color" content="#1d2b25">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Caveat+Brush&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 /* layout: one narrow column like a folded invitation, rain falling behind the whole page, a weekend strip, then practical notes and an rsvp card */
 :root {
@@ -34,10 +34,6 @@
   --display: "Young Serif", Georgia, "Times New Roman", serif;
   --body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
-  --hand: "Caveat Brush", "Young Serif", cursive;
-  --print: #f5f3ec;     /* photo print border, same in both themes */
-  --tape: rgba(231, 166, 74, 0.55);
-  --tape-2: rgba(125, 184, 139, 0.55);
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
@@ -88,28 +84,7 @@ h1 {
   margin: 0;
   text-wrap: balance;
 }
-h1 .glow {
-  color: var(--lantern);
-  font-family: var(--hand);
-  font-size: 1.4em;
-  letter-spacing: 0;
-  line-height: 0.85;
-  display: inline-block;
-  transform: rotate(-4deg);
-  transform-origin: 0 60%;
-}
-h1 .i { position: relative; display: inline-block; }
-h1 .flame {
-  position: absolute; left: 50%; bottom: 0.62em;
-  width: 0.2em; height: 0.3em; margin-left: -0.1em;
-  transform-origin: 50% 100%;
-  animation: flicker 2.6s ease-in-out infinite;
-}
-@keyframes flicker {
-  0%, 100% { transform: rotate(-3deg) scale(1, 1); }
-  30% { transform: rotate(4deg) scale(0.95, 1.08); }
-  60% { transform: rotate(-1deg) scale(1.04, 0.94); }
-}
+h1 .glow { color: var(--lantern); }
 .lede { font-size: 1.25rem; line-height: 1.5; margin: 1.75rem 0 0; max-width: 32rem; }
 .facts {
   margin: 2rem 0 0;
@@ -138,19 +113,6 @@ section p:last-child { margin-bottom: 0; }
   transform: rotate(var(--r, -6deg));
 }
 h2 { display: flex; align-items: center; gap: 0.6rem; }
-.hero { position: relative; }
-.hero .d-fern { position: absolute; right: 0; top: 1rem; width: 3.4rem; height: 3.4rem; --r: 14deg; }
-.hero .d-mush { display: none; }
-@media (min-width: 40rem) {
-  .hero .d-fern { top: 4rem; right: -1rem; width: 5.5rem; height: 5.5rem; }
-  .hero .d-mush { display: block; position: absolute; right: 1.5rem; margin-top: 2rem; width: 3.6rem; height: 3.6rem; --r: -8deg; }
-}
-
-/* sleeps countdown: moss grows over the stone as the weekend gets closer */
-.sleeps { display: flex; align-items: center; gap: 0.9rem; margin-top: 1.75rem; }
-.sleeps .stone { width: 4.5rem; height: auto; flex: none; }
-.sleeps p { margin: 0; font: 1.6rem/1.1 var(--hand); color: var(--pine); }
-.sleeps b { color: var(--lantern); font-weight: 400; }
 
 /* photos */
 .bleed { margin-inline: -20px; }
@@ -188,73 +150,6 @@ figcaption { font: 0.75rem/1.4 var(--mono); color: var(--moss); padding: 0.5rem 
 .mosaic .small img { aspect-ratio: auto; }
 .mosaic .full { grid-column: span 2; }
 .mosaic .full img { aspect-ratio: 2 / 1; }
-
-/* scrapbook: photos as taped prints. remove class="scrapbook" from <html> to turn it all off */
-html.scrapbook .bleed { margin-inline: 0; }
-html.scrapbook :is(.hero-photo, .things li, .space figure, .map) { position: relative; }
-html.scrapbook :is(.hero-photo img, .things img, .space img, .map img) {
-  border: 6px solid var(--print);
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.28);
-}
-html.scrapbook :is(.hero-photo, .space figure, .map, .things img) { transition: transform 0.35s ease; }
-html.scrapbook .hero-photo { transform: rotate(-1.2deg); }
-html.scrapbook .map { transform: rotate(1deg); }
-html.scrapbook .things li:nth-child(odd) img { transform: rotate(-2deg); }
-html.scrapbook .things li:nth-child(even) img { transform: rotate(1.6deg); }
-html.scrapbook .space:nth-child(odd) figure { transform: rotate(0.9deg); }
-html.scrapbook .space:nth-child(even) figure { transform: rotate(-1.1deg); }
-html.scrapbook :is(.hero-photo, .space figure, .map):hover,
-html.scrapbook .things li:hover img { transform: rotate(0deg) scale(1.015); }
-html.scrapbook :is(.hero-photo, .things li, .space figure, .map)::before {
-  content: ""; position: absolute; z-index: 2; top: -10px; left: 50%;
-  width: 92px; height: 24px; margin-left: -46px;
-  background: var(--tape);
-  clip-path: polygon(0 8%, 6% 0, 12% 10%, 18% 0, 24% 8%, 100% 0, 96% 50%, 100% 100%, 0 100%, 4% 50%);
-  transform: rotate(-4deg);
-  pointer-events: none;
-}
-html.scrapbook :is(.things li:nth-child(even), .space:nth-child(even) figure)::before { background: var(--tape-2); transform: rotate(5deg); }
-html.scrapbook figcaption { padding-inline: 4px; }
-@media (prefers-reduced-motion: reduce) {
-  html.scrapbook :is(.hero-photo, .space figure, .map, .things img) { transition: none; }
-}
-
-/* steam rising off the hot tub and sauna */
-.steamy { position: relative; }
-.steam { position: absolute; z-index: 1; pointer-events: none; left: 12%; right: 12%; }
-.steam i {
-  position: absolute; bottom: 0; width: 48%; height: 55%; border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0));
-  filter: blur(6px); opacity: 0;
-}
-.steam i:nth-child(1) { left: 5%; }
-.steam i:nth-child(2) { left: 30%; animation-delay: 1.4s !important; }
-.steam i:nth-child(3) { left: 55%; animation-delay: 2.8s !important; }
-.is-steaming .steam i { animation: steam 4.2s ease-out infinite; }
-@keyframes steam {
-  0% { transform: translateY(20%) scale(0.6); opacity: 0; }
-  25% { opacity: 0.9; }
-  100% { transform: translate(12%, -130%) scale(1.5); opacity: 0; }
-}
-@media (prefers-reduced-motion: reduce) { .is-steaming .steam i { animation: none; } }
-
-/* candles: dark until tapped */
-.candles { all: unset; display: block; position: relative; width: 100%; cursor: pointer; overflow: hidden; }
-.candles:focus-visible { outline: 2px solid var(--lantern); outline-offset: 2px; }
-.candles img { filter: brightness(0.14) saturate(0.3); transition: filter 1.6s ease; }
-.candles[aria-pressed="true"] img { filter: none; animation: candlelight 3.2s ease-in-out 1.6s infinite; }
-@keyframes candlelight { 0%, 100% { filter: brightness(1); } 40% { filter: brightness(0.92); } 70% { filter: brightness(1.06); } }
-.cglow {
-  position: absolute; width: 22%; aspect-ratio: 1; margin: -11% 0 0 -11%;
-  border-radius: 50%; pointer-events: none; mix-blend-mode: screen;
-  background: radial-gradient(closest-side, rgba(255, 190, 90, 0.55), rgba(255, 140, 40, 0));
-  opacity: 0; transform: scale(0.6); transition: opacity 1.2s ease, transform 1.2s ease;
-}
-.candles[aria-pressed="true"] .cglow { opacity: 1; transform: scale(1); animation: glowflicker 2.2s ease-in-out 1.2s infinite; }
-@keyframes glowflicker { 0%, 100% { transform: scale(1); } 50% { transform: scale(0.9); } }
-@media (prefers-reduced-motion: reduce) {
-  .candles[aria-pressed="true"] img, .candles[aria-pressed="true"] .cglow { animation: none; }
-}
 
 /* a lantern floats up when an rsvp is written */
 .lantern-fly { position: fixed; z-index: 60; width: 44px; height: 44px; pointer-events: none; filter: drop-shadow(0 0 14px rgba(255, 180, 80, 0.9)); }
@@ -332,14 +227,12 @@ footer { font: 0.8rem/1.5 var(--mono); color: var(--moss); }
 }
 @media (prefers-reduced-motion: reduce) {
   #rain { display: none; }
-  h1 .flame { animation: none; }
 }
 </style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <filter id="wobble" x="-20%" y="-20%" width="140%" height="140%"><feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="2.4"/></filter>
-  <symbol id="d-mushroom" viewBox="0 0 48 48"><g filter="url(#wobble)"><path d="M7 25 C6 14 15 7 24 7 C33 7 42 14 41 25 C33 23 15 23 7 25Z"/><path d="M18 24.5 C17 31 17 37 19 42 M30 24.5 C31 31 31 37 29 42"/><path d="M8 42 C16 40.5 32 40.5 40 42"/><circle cx="17" cy="16" r="2"/><circle cx="27" cy="12" r="1.6"/><circle cx="33" cy="18" r="2.2"/></g></symbol>
   <symbol id="d-fern" viewBox="0 0 48 48"><g filter="url(#wobble)"><path d="M22 45 C23 34 22 22 27 6"/><path d="M22.6 38 C17 37 12 34 9 30 M22.8 38 C28 36 32 33 35 29 M22.8 30 C18 29 14 26 12 22 M23.2 30 C28 28 31 25 33 21 M23.8 22 C20 21 17 18 16 15 M24.2 22 C28 20 30 17 31 14 M25.4 14 C23 13 21 11 21 9 M25.8 14 C28 12 29 10 29 8"/></g></symbol>
   <symbol id="d-moon" viewBox="0 0 48 48"><g filter="url(#wobble)"><path d="M29 7 A17 17 0 1 0 41 33 A13.5 13.5 0 1 1 29 7Z"/><path d="M9 9 V15 M6 12 H12 M38 6 V10 M36 8 H40"/><circle cx="12" cy="37" r="0.8"/></g></symbol>
   <symbol id="d-face" viewBox="0 0 48 48"><g filter="url(#wobble)"><path d="M13 41 C9 28 12 10 24 8 C36 10 39 28 35 41 Z"/><path d="M17 23 Q20 25.5 23 23 M25 23 Q28 25.5 31 23"/><path d="M24 26 C24 28.5 23.5 30 22 30.5"/><path d="M19 34 Q24 37 29 34"/><path d="M15 14 Q17 11 19 14 Q21 11 23 14 Q25 11 27 14 Q29 11 31 14 Q33 11 34 15"/></g></symbol>
@@ -353,26 +246,14 @@ footer { font: 0.8rem/1.5 var(--mono); color: var(--moss); }
 <main class="wrap">
 
   <header class="hero">
-    <svg class="doodle d-fern" aria-hidden="true"><use href="#d-fern"/></svg>
     <p class="eyebrow">an invitation · november 2026</p>
-    <h1 aria-label="a forest birthday">a forest <span class="glow" aria-hidden="true">b<span class="i">ı<svg class="flame" viewBox="0 0 20 30"><path d="M10 1 C14 8 18 12 18 19 a8 8 0 0 1 -16 0 C2 12 6 8 10 1Z" fill="currentColor"/><path d="M10 13 C12 16 13 18 13 21 a3 3 0 0 1 -6 0 C7 18 8 16 10 13Z" fill="#fbe3b0"/></svg></span>rthday</span></h1>
+    <h1>a forest <span class="glow">birthday</span></h1>
     <p class="lede">come celebrate my birthday with me at the garden. come for a day, or a week, or however long you want.</p>
-    <svg class="doodle d-mush" aria-hidden="true"><use href="#d-mushroom"/></svg>
     <dl class="facts">
       <dt>when</dt><dd>fri 20 – mon 23 nov</dd>
       <dt>the day</dt><dd>sun 22 nov</dd>
       <dt>where</dt><dd>the garden, a forest near porto, portugal</dd>
     </dl>
-    <div class="sleeps">
-      <svg class="stone" viewBox="0 0 80 56" aria-hidden="true">
-        <defs><clipPath id="stone-clip"><path d="M6 51 C1 37 10 15 30 9 C47 4 67 11 74 30 C78 41 76 49 71 51 Z"/></clipPath></defs>
-        <path d="M6 51 C1 37 10 15 30 9 C47 4 67 11 74 30 C78 41 76 49 71 51 Z" fill="#8d958c"/>
-        <path d="M22 30 C26 28 30 29 33 31 M50 22 C53 21 56 22 58 24" stroke="#737b72" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-        <g clip-path="url(#stone-clip)"><path id="moss" fill="#5e9a58" d="M0 0 H80 V10 Z"/><g id="moss-dots" fill="#4b8446"></g></g>
-        <path d="M2 52 H78" stroke="var(--line)" stroke-width="2" stroke-linecap="round"/>
-      </svg>
-      <p id="sleeps-text">sleeps until the forest</p>
-    </div>
     <figure class="hero-photo bleed">
       <img src="img/forest.jpg" width="1600" height="900" alt="the lake at the garden from above, surrounded by forest">
       <figcaption>the lake from above. 9 hectares of forest, two springs</figcaption>
@@ -385,8 +266,8 @@ footer { font: 0.8rem/1.5 var(--mono); color: var(--moss); }
     <p>there are a ton of instruments, so we can jam and sing. there's a projector for karaoke or movies. i won't be making a program. it's co-created, and any and all additions or contributions are welcome. let's make it a cozy, fun time together.</p>
     <p>i'd love to have you here.</p>
     <ul class="things">
-      <li class="steamy"><span class="steam" aria-hidden="true" style="top: 22%; height: 40%;"><i></i><i></i><i></i></span><img src="img/hottub.jpg" width="1600" height="1242" alt="a wooden hot tub in the forest" loading="lazy" style="object-position: 30% 100%"><div><b>hot tub</b><span>steaming, in the rain</span></div></li>
-      <li class="steamy"><span class="steam" aria-hidden="true" style="top: 18%; height: 55%;"><i></i><i></i><i></i></span><img src="img/sauna.jpg" width="1205" height="1600" alt="inside the cedar barrel sauna" loading="lazy"><div><b>sauna</b><span>cedar, on the lake</span></div></li>
+      <li><img src="img/hottub.jpg" width="1600" height="1242" alt="a wooden hot tub in the forest" loading="lazy" style="object-position: 30% 100%"><div><b>hot tub</b><span>steaming, in the rain</span></div></li>
+      <li><img src="img/sauna.jpg" width="1205" height="1600" alt="inside the cedar barrel sauna" loading="lazy"><div><b>sauna</b><span>cedar, on the lake</span></div></li>
       <li><img src="img/dance.jpg" width="1600" height="1066" alt="people moving in the big wooden dance hall" loading="lazy"><div><b>dancing</b><span>the big wooden hall, music</span></div></li>
       <li><img src="img/night.jpg" width="1152" height="1600" alt="the dance hall lit up at night under a full moon" loading="lazy" style="object-position: 50% 70%"><div><b>nights</b><span>the hall lit up under the moon</span></div></li>
     </ul>
@@ -442,7 +323,7 @@ footer { font: 0.8rem/1.5 var(--mono); color: var(--moss); }
   <section>
     <h2>the weekend <svg class="doodle" style="--r:-4deg" aria-hidden="true"><use href="#d-moon"/></svg></h2>
     <p>mostly this is time to talk, hang out and catch up. the rest is optional.</p>
-    <figure class="band bleed"><button type="button" class="candles" aria-pressed="false" aria-label="light the candles"><img src="img/candles.jpg" width="1600" height="734" alt="candles on a wooden table at night" loading="lazy"><span class="cglow" style="left: 44%; top: 13%;"></span><span class="cglow" style="left: 63%; top: 20%;"></span></button><figcaption id="candles-cap">tap to light the candles</figcaption></figure>
+    <figure class="band bleed"><img src="img/candles.jpg" width="1600" height="734" alt="candles burning on a wooden table at night" loading="lazy"></figure>
     <ol class="days">
       <li><time>fri 20</time><div><strong>arrive</strong><p>settle in, a nice dinner cooked for us, catching up, first sauna</p></div></li>
       <li><time>sat 21</time><div><strong>hang out, then party</strong><p>long talks, forest walks, hot tub, the full gym if you want it. dinner, then dancing into my birthday at midnight</p></div></li>
@@ -615,15 +496,6 @@ const WHATSAPP = "4917661358090";
   });
 })();
 
-(function steam() {
-  const els = document.querySelectorAll(".steamy");
-  if (!("IntersectionObserver" in window)) { els.forEach(e => e.classList.add("is-steaming")); return; }
-  const io = new IntersectionObserver(entries => {
-    for (const e of entries) e.target.classList.toggle("is-steaming", e.isIntersecting);
-  }, { threshold: 0.3 });
-  els.forEach(e => io.observe(e));
-})();
-
 (function splash() {
   const c = document.getElementById("splash");
   if (!c || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -636,7 +508,7 @@ const WHATSAPP = "4917661358090";
   }
   size(); addEventListener("resize", size);
   document.addEventListener("pointerdown", (e) => {
-    if (e.target.closest("a, button, input, select, textarea, label, .candles")) return;
+    if (e.target.closest("a, button, input, select, textarea, label")) return;
     const drops = Array.from({ length: 7 }, () => {
       const a = -Math.PI * (0.15 + Math.random() * 0.7);
       const v = 1.6 + Math.random() * 2.2;
@@ -670,18 +542,6 @@ const WHATSAPP = "4917661358090";
   }
 })();
 
-(function candles() {
-  const b = document.querySelector(".candles");
-  const cap = document.getElementById("candles-cap");
-  if (!b) return;
-  b.addEventListener("click", () => {
-    const lit = b.getAttribute("aria-pressed") !== "true";
-    b.setAttribute("aria-pressed", String(lit));
-    b.setAttribute("aria-label", lit ? "blow out the candles" : "light the candles");
-    cap.textContent = lit ? "make a wish" : "tap to light the candles";
-  });
-})();
-
 function floatLantern(from) {
   if (matchMedia("(prefers-reduced-motion: reduce)").matches || !from) return;
   const r = from.getBoundingClientRect();
@@ -700,29 +560,6 @@ function floatLantern(from) {
     { transform: `translate(-4px, ${-rise}px) rotate(0deg)`, opacity: 0 }
   ], { duration: 6500, easing: "ease-in-out" }).onfinish = () => el.remove();
 }
-
-(function sleeps() {
-  const text = document.getElementById("sleeps-text");
-  const moss = document.getElementById("moss");
-  const dots = document.getElementById("moss-dots");
-  if (!text) return;
-  const now = new Date();
-  const today = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
-  const start = Date.UTC(2026, 9, 13), arrive = Date.UTC(2026, 10, 20), leave = Date.UTC(2026, 10, 23);
-  const n = Math.round((arrive - today) / 864e5);
-  if (n > 1) text.innerHTML = `<b>${n}</b> sleeps until the forest`;
-  else if (n === 1) text.innerHTML = "<b>1</b> sleep until the forest";
-  else if (n === 0) text.textContent = "today. see you in the forest";
-  else if (today <= leave) text.textContent = "we're in the forest";
-  else text.textContent = "thank you for coming";
-  const k = Math.min(1, Math.max(0.2, (today - start) / (arrive - start)));
-  const y = 6 + k * 48;
-  let d = `M0 0 H80 V${y.toFixed(1)}`;
-  for (let x = 80; x > 0; x -= 10) d += ` Q${x - 5} ${(y + (x % 20 ? 4 : -2)).toFixed(1)} ${x - 10} ${y.toFixed(1)}`;
-  moss.setAttribute("d", d + " Z");
-  const pts = [[24, 0.3], [40, 0.15], [55, 0.4], [33, 0.7], [62, 0.75], [18, 0.85]];
-  dots.innerHTML = pts.filter(([, f]) => f < k + 0.1).map(([x, f]) => `<circle cx="${x}" cy="${(8 + f * (y - 8)).toFixed(1)}" r="2.2"/>`).join("");
-})();
 </script>
 </body>
 </html>
