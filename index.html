@@ -31,6 +31,7 @@
   --line: #b9c2b8;
   --field: #f1f3ef;
   --rain: 29, 43, 37;    /* rgb for canvas drops */
+  --date-edge: rgba(29, 43, 37, 0.45);
   --display: "Young Serif", Georgia, "Times New Roman", serif;
   --body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
@@ -40,12 +41,14 @@
   :root:not([data-theme="light"]) {
     --fog: #141c18; --fog-deep: #1c2621; --pine: #e4e9e2; --moss: #9fb0a5;
     --lantern: #e7a64a; --line: #33423a; --field: #18211d; --rain: 200, 215, 205;
+    --date-edge: rgba(228, 233, 226, 0.4);
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --fog: #141c18; --fog-deep: #1c2621; --pine: #e4e9e2; --moss: #9fb0a5;
   --lantern: #e7a64a; --line: #33423a; --field: #18211d; --rain: 200, 215, 205;
+  --date-edge: rgba(228, 233, 226, 0.4);
   color-scheme: dark;
 }
 
@@ -87,12 +90,13 @@ h1 {
 h1 .glow { color: var(--lantern); }
 .bigdate {
   margin: 1.25rem 0 0;
-  font: 400 clamp(4rem, 22vw, 7.5rem)/0.9 var(--display);
-  letter-spacing: -0.03em;
-  color: var(--lantern);
-  background: linear-gradient(rgba(20, 70, 40, 0.3), rgba(20, 70, 40, 0.3)), url(img/fountain.jpg) center 40% / cover;
+  font: 400 clamp(3.2rem, 17vw, 5.75rem)/0.9 var(--display);
+  letter-spacing: -0.02em;
+  color: var(--pine);
+  background: url(img/date-fill.jpg) center 45% / cover;
   -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1px var(--date-edge);
   font-variant-numeric: lining-nums;
 }
 .lede { font-size: 1.25rem; line-height: 1.5; margin: 1.75rem 0 0; max-width: 32rem; }
